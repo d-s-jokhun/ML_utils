@@ -24,7 +24,8 @@ import sys
 get_labels_from = 'folders' # 'Filenames' or 'Folders'
 
 # data_path = os.path.abspath("/gpfs0/home/jokhun/Pro 1/U2OS small mol screening/Segmented_SmallMol")
-data_path = os.path.abspath('//deptnas.nus.edu.sg/BIE/MBELab/jokhun/Pro 1/U2OS small mol screening/Segmented_SmallMol/')
+# data_path = os.path.abspath('//deptnas.nus.edu.sg/BIE/MBELab/jokhun/Pro 1/U2OS small mol screening/Segmented_SmallMol/')
+data_path = os.path.abspath('/MBELab/jokhun/Pro 1/U2OS small mol screening/Segmented/')
 
 if get_labels_from.lower() == 'filenames':
     filenames = [filename for filename in os.listdir(data_path) if os.path.isfile(os.path.join(data_path,filename))]
@@ -144,11 +145,11 @@ print ('Classes in Training Set : ' + str(values) + '\n -Frequencies : ' + str(c
 print ('\nLength of Validation Set = ' + str(len(Val_Paths)))
 values, counts = np.unique(Val_Y, return_counts=True)
 Dis_counts = round(np.amin(Class_sizes)*Partition[1])
-print ('Classes in Training Set : ' + str(values) + '\n -Frequencies : ' + str(counts[0]) + '\n -Distinct Frequencies : ' + str(Dis_counts))
+print ('Classes in Validation Set : ' + str(values) + '\n -Frequencies : ' + str(counts[0]) + '\n -Distinct Frequencies : ' + str(Dis_counts))
 print ('\nLength of Test Set = ' + str(len(Ts_Paths)))
 values, counts = np.unique(Ts_Y, return_counts=True)
 Dis_counts = round(np.amin(Class_sizes)*Partition[2])
-print ('Classes in Training Set : ' + str(values) + '\n -Frequencies : ' + str(counts[0]) + '\n -Distinct Frequencies : ' + str(Dis_counts))
+print ('Classes in Test Set : ' + str(values) + '\n -Frequencies : ' + str(counts[0]) + '\n -Distinct Frequencies : ' + str(Dis_counts))
 
 print (f'\n1st element of Training Set : {Tr_Y[0]}\n' + str(Tr_Paths[0]))
 print (f'1st element of Validation Set : {Val_Y[0]}\n' + str(Val_Paths[0]))

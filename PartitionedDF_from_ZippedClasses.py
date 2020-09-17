@@ -33,7 +33,7 @@ def AddFolder2Files (folder_str, filenames_ls):
 
 #%% Define the root directory
 
-root_dir = os.path.abspath(r"/gpfs0/home/jokhun/fashion_mnist/data_zipped")
+root_dir = os.path.abspath(r"/gpfs0/home/jokhun/Pro 1/U2OS small mol screening/Segmented_SmallMol")
 # root_dir = os.path.abspath(r'\\kuehlapis.mbi.nus.edu.sg\home\jokhun\Pro 1\U2OS small mol screening\Segmented_SmallMol')
 print(root_dir)
 
@@ -49,13 +49,16 @@ print('\nNo. of Classes available =',len(classes_avail))
 
 #%% Shortlisting classes to consider
 
-Shortlist_Classes = False # Set to False in order to select all available classes
+Shortlist_Classes = True # Set to False in order to select all available classes
 # shortlist_idx = [slice(30300,len(classes_avail))] # List of classes to be selected. Only used if Select_Classes is True.
 
 if Shortlist_Classes:
-    exclusion_idx = [classes_avail.index('DMSO_complete'),\
-        classes_avail.index('DMSO_2000'),\
-            classes_avail.index('DMSO_3000')]
+    exclusion_idx = [\
+        classes_avail.index('DMSO_complete'),\
+            classes_avail.index('DMSO_2000'),\
+                # classes_avail.index('DMSO_3000'),\
+                    classes_avail.index('DMSO_5000'),\
+    ]
     shortlist_idx = [i for i in range(len(classes_avail)) if i not in exclusion_idx]
     
     info['Manually excluded classes']=f'{sorted(list(operator.itemgetter(*exclusion_idx)(classes_avail)))}'
@@ -80,8 +83,8 @@ if __name__=='__main__':
 
 #%% Define the limits on number of files for each class and view the resulting class size distribution
 
-lower_SizeLim = None # use None to remove limits
-upper_SizeLim = None #int(round(np.percentile(Class_sizes,99.99))) # use None to remove limits
+lower_SizeLim = 1001 # use None to remove limits
+upper_SizeLim = 1350 #int(round(np.percentile(Class_sizes,99.99))) # use None to remove limits
 
 info['Class size limits']=f'{(lower_SizeLim,upper_SizeLim)}'
 print(f"Limits chosen: ({lower_SizeLim},{upper_SizeLim})")
